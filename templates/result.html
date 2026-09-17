@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Ergebnis | Hotel Mystery</title>
+
+    <link
+        rel="stylesheet"
+        href="{{ url_for('static', filename='style.css') }}"
+    >
+</head>
+<body>
+    <main class="container">
+        <section class="result-card">
+            <p class="label">
+                Partie abgeschlossen
+            </p>
+
+            <h1>Endergebnis</h1>
+
+            <div class="result-grid">
+                <article>
+                    <span>Hotelbewertung</span>
+                    <strong>{{ hotel_rating }}</strong>
+                </article>
+
+                <article>
+                    <span>Chaoswert</span>
+                    <strong>{{ chaos_value }}</strong>
+                </article>
+
+                <article>
+                    <span>Endpunktzahl</span>
+                    <strong>{{ final_score }}</strong>
+                </article>
+            </div>
+
+            <h2>{{ ending }}</h2>
+
+            <p>
+                Die Endpunktzahl berechnet sich aus der
+                Hotelbewertung abzüglich des Chaoswertes.
+            </p>
+
+            <form
+                action="{{ url_for('start_game') }}"
+                method="post"
+            >
+                <button
+                    class="button"
+                    type="submit"
+                >
+                    Neue Partie starten
+                </button>
+            </form>
+        </section>
+    </main>
+</body>
+</html>

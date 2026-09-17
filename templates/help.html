@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Hier folgen die Spielregeln für Hotel Mystery</title>
+
+    <link
+        rel="stylesheet"
+        href="{{ url_for('static', filename='style.css') }}"
+    >
+</head>
+<body>
+    <main class="container">
+        <article class="help-document">
+            <p class="label">
+                Rezeption des Hotels
+            </p>
+
+            <h1>Spielregeln</h1>
+
+            <p class="introduction">
+                Du leitest das Hotel für drei Nächte.
+                Dein Ziel ist eine hohe Hotelbewertung
+                bei einem niedrigen Chaoswert.
+            </p>
+
+            <section>
+                <h2>Spielablauf</h2>
+
+                <ol>
+                    <li>
+                        In jeder Nacht reisen genau drei
+                        übernatürliche Gäste an.
+                    </li>
+                    <li>
+                        Jeder dieser Gäste besitzt genau zwei
+                        Zimmeranforderungen.
+                    </li>
+                    <li>
+                        Ordne jedem Gast ein freies Zimmer zu.
+                    </li>
+                    <li>
+                        Prüfe deine Planung und ändere
+                        Zuordnungen bei Bedarf.
+                    </li>
+                    <li>
+                        Werte die Nacht aus, sobald alle
+                        Gäste ein Zimmer besitzen.
+                    </li>
+                </ol>
+            </section>
+
+            <section>
+                <h2>Gasttypen</h2>
+
+                <div class="rules-grid">
+                    <div>
+                        <h3>Vampir</h3>
+                        <p>
+                            Benötigt ein Zimmer ohne Fenster
+                            und ohne Spiegel.
+                        </p>
+                    </div>
+
+                    <div>
+                        <h3>Geist</h3>
+                        <p>
+                            Benötigt ein Zimmer ohne Spiegel
+                            und mit Schallschutz.
+                        </p>
+                    </div>
+
+                    <div>
+                        <h3>Werwolf</h3>
+                        <p>
+                            Benötigt Schallschutz und ein
+                            Zimmer ohne Fenster.
+                        </p>
+                    </div>
+
+                    <div>
+                        <h3>Hexe</h3>
+                        <p>
+                            Benötigt einen Balkon und ein
+                            Fenster.
+                        </p>
+                    </div>
+
+                    <div>
+                        <h3>Troll</h3>
+                        <p>
+                            Benötigt einen verstärkten Boden
+                            und ein großes Bett.
+                        </p>
+                    </div>
+                </div>
+            </section>
+
+            <section>
+                <h2>Concierge</h2>
+
+                <p>
+                    Der Concierge empfiehlt einmal pro Nacht
+                    das am besten geeignete freie Zimmer für
+                    einen ausgewählten Gast.
+                </p>
+
+                <p>
+                    Die Empfehlung verändert die
+                    Zimmerzuordnung nicht. Du entscheidest
+                    selbst, ob du das empfohlene Zimmer
+                    verwendest.
+                </p>
+            </section>
+
+            <section>
+                <h2>Bewertung</h2>
+
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Erfüllte Anforderungen</th>
+                            <th>Hotelbewertung</th>
+                            <th>Chaoswert</th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+                        <tr>
+                            <td>Zwei von zwei</td>
+                            <td>+10</td>
+                            <td>+0</td>
+                        </tr>
+
+                        <tr>
+                            <td>Eine von zwei</td>
+                            <td>+5</td>
+                            <td>+5</td>
+                        </tr>
+
+                        <tr>
+                            <td>Keine</td>
+                            <td>+0</td>
+                            <td>+10</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </section>
+
+            <section>
+                <h2>Endergebnis</h2>
+
+                <p>
+                    Nach der dritten Nacht berechnet das
+                    Spiel die Endpunktzahl:
+                </p>
+
+                <p class="formula">
+                    Hotelbewertung − Chaoswert
+                </p>
+
+                <ul>
+                    <li>
+                        0 bis 29 Punkte:
+                        Kritischer Endzustand
+                    </li>
+                    <li>
+                        30 bis 59 Punkte:
+                        Stabiler Endzustand
+                    </li>
+                    <li>
+                        60 bis 90 Punkte:
+                        Erfolgreicher Endzustand
+                    </li>
+                </ul>
+            </section>
+
+            <a
+                class="button"
+                href="{{ request.referrer or url_for('start') }}"
+            >
+                Zurück
+            </a>
+        </article>
+    </main>
+</body>
+</html>

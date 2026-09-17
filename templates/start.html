@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Hotel Mystery</title>
+
+    <link
+        rel="stylesheet"
+        href="{{ url_for('static', filename='style.css') }}"
+    >
+</head>
+<body>
+    <main class="container">
+        <section class="start-card">
+            <p class="label">Hotelverwaltung</p>
+
+            <h1>Hotel Mystery</h1>
+
+            <p>
+                Leite das Hotel für drei Nächte.
+                Ordne jedem übernatürlichen Gast
+                ein geeignetes Zimmer zu.
+            </p>
+<p>
+    <a
+        class="rules-link"
+        href="{{ url_for('help_page') }}"
+    >
+        Spielregeln lesen
+    </a>
+</p>
+            <form
+                action="{{ url_for('start_game') }}"
+                method="post"
+            >
+                <button
+                    class="button"
+                    type="submit"
+                >
+                    Neues Spiel starten
+                </button>
+            </form>
+        </section>
+    </main>
+</body>
+</html>
