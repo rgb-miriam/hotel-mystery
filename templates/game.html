@@ -10,24 +10,28 @@
 
     <title>Nacht {{ scenario.number }}</title>
 
-<a
-    class="rules-link rules-link-dark"
-    href="{{ url_for('help_page') }}"
->
-    Spielregeln anzeigen
-</a>
-
     <link
         rel="stylesheet"
         href="{{ url_for('static', filename='style.css') }}"
     >
 </head>
+
 <body>
     <main class="container">
+        <a
+            class="rules-link rules-link-dark"
+            href="{{ url_for('help_page') }}"
+        >
+            Spielregeln anzeigen
+        </a>
+
         <header class="page-header">
             <div>
-                <p class="label">Hotel Mystery</p>
-                <h1>Nacht {{ scenario.number }}</h1>
+                <p class="label">Portfolio</p>
+
+                <h1>
+                    Hotel Mystery
+                </h1>
             </div>
 
             <div class="score">
@@ -53,169 +57,188 @@
             {% endif %}
         {% endwith %}
 
-        <section>
-            <h2>Gäste dieser Nacht</h2>
+        <div class="game-layout">
+            <section class="hotel-area">
+                <h2>Nacht {{ scenario.number }}</h2>
 
-            <div class="card-grid">
-                {% for guest in scenario.guests %}
-                    <article class="card">
-                        <p class="guest-id">
-                            Gastkennung {{ guest.id }}
-                        </p>
+                <div class="hotel-grid">
+                    {% for room in rooms %}
+                        <article class="top-view-room">
+                            <h3>
+                                {{ room.number }}
+                            </h3>
 
-                        <h3>
-                            {{ guest.guest_type.value }}
-                        </h3>
-
-                        <p>Anforderungen:</p>
-
-                        <ul>
-                            {% for requirement in guest.requirements %}
-                                <li>{{ requirement }}</li>
-                            {% endfor %}
-                        </ul>
-<form
-    action="{{ url_for('recommend_room') }}"
-    method="post"
->
-    <input
-        type="hidden"
-        name="guest_id"
-        value="{{ guest.id }}"
-    >
-
-    <button
-        class="concierge-button"
-        type="submit"
-        {% if concierge_used %}disabled{% endif %}
-    >
-        Concierge fragen
-    </button>
-</form>
-                        {% if guest.id in assignments %}
-                            <p class="assignment">
-                                Zugeordnetes Zimmer:
-                                {{ assignments[guest.id] }}
-                            </p>
-                        {% else %}
-                            <p class="no-assignment">
-                                Noch kein Zimmer zugeordnet
-                            </p>
-                        {% endif %}
-
-                        <form
-                            action="{{ url_for('assign_room') }}"
-                            method="post"
-                        >
-                            <input
-                                type="hidden"
-                                name="guest_id"
-                                value="{{ guest.id }}"
-                            >
-
-                            <label
-                                for="room-{{ guest.id }}"
-                            >
-                                Zimmer auswählen
-                            </label>
-
-                            <select
-                                id="room-{{ guest.id }}"
-                                name="room_number"
-                                required
-                            >
-                                <option value="">
-                                    Bitte auswählen
-                                </option>
-
-                                {% for room in rooms %}
-                                    <option
-                                        value="{{ room.number }}"
-                                    >
-                                        Zimmer {{ room.number }}
-                                    </option>
+                            <ul>
+                                {% for feature in room.features | sort %}
+                                    <li>
+                                        {{ feature }}
+                                    </li>
                                 {% endfor %}
-                            </select>
+                            </ul>
 
-                            <button
-                                class="button small-button"
-                                type="submit"
-                            >
-                                Zimmer zuordnen
-                            </button>
-                        </form>
+                            {% if room.number in assignments.values() %}
+                                <p class="occupied">
+                                    Belegt
+                                </p>
+                            {% else %}
+                                <p class="available">
+                                    Frei
+                                </p>
+                            {% endif %}
+                        </article>
+                    {% endfor %}
+                </div>
+            </section>
 
-                        {% if guest.id in assignments %}
-                            <form
-                                action="{{ url_for('remove_assignment') }}"
-                                method="post"
-                            >
-                                <input
-                                    type="hidden"
-                                    name="guest_id"
-                                    value="{{ guest.id }}"
+            <aside class="guest-sidebar">
+                <h2>Gäste</h2>
+
+                <div class="guest-stack">
+                    {% for guest in scenario.guests %}
+                        <details class="guest-entry">
+                            <summary class="guest-circle">
+                                <span class="guest-circle-type">
+                                    {{ guest.guest_type.value }}
+                                </span>
+                            </summary>
+
+                            <div class="guest-popover">
+                                <h3>
+                                    {{ guest.guest_type.value }}
+                                </h3>
+
+                                <p>Anforderungen:</p>
+
+                                <ul>
+                                    {% for requirement in guest.requirements %}
+                                        <li>
+                                            {{ requirement }}
+                                        </li>
+                                    {% endfor %}
+                                </ul>
+
+                                {% if guest.id in assignments %}
+                                    <p class="assignment">
+                                        Zugeordnetes Zimmer:
+                                        {{ assignments[guest.id] }}
+                                    </p>
+                                {% else %}
+                                    <p class="no-assignment">
+                                        Noch keinem Zimmer zugeordnet
+                                    </p>
+                                {% endif %}
+
+                                <form
+                                    action="{{ url_for('recommend_room') }}"
+                                    method="post"
                                 >
+                                    <input
+                                        type="hidden"
+                                        name="guest_id"
+                                        value="{{ guest.id }}"
+                                    >
 
-                                <button
-                                    class="remove-button"
-                                    type="submit"
+                                    <button
+                                        class="concierge-button"
+                                        type="submit"
+                                        {% if concierge_used %}
+                                            disabled
+                                        {% endif %}
+                                    >
+                                        Concierge fragen
+                                    </button>
+                                </form>
+
+                                <form
+                                    action="{{ url_for('assign_room') }}"
+                                    method="post"
                                 >
-                                    Zuordnung entfernen
-                                </button>
-                            </form>
-                        {% endif %}
-                    </article>
-                {% endfor %}
-            </div>
-        </section>
-<form
-    class="finish-form"
-    action="{{ url_for('finish_night') }}"
-    method="post"
->
-    <button
-        class="finish-button"
-        type="submit"
-        {% if assignments | length != 3 %}
-            disabled
-        {% endif %}
-    >
-        Nacht auswerten
-    </button>
+                                    <input
+                                        type="hidden"
+                                        name="guest_id"
+                                        value="{{ guest.id }}"
+                                    >
 
-    {% if assignments | length != 3 %}
-        <p class="form-information">
-            Ordne zuerst allen drei Gästen ein Zimmer zu.
-        </p>
-    {% endif %}
-</form>
-        <section>
-            <h2>Zimmerübersicht</h2>
+                                    <label for="room-{{ guest.id }}">
+                                        Zimmer auswählen
+                                    </label>
 
-            <div class="card-grid">
-                {% for room in rooms %}
-                    <article class="card room-card">
-                        <h3>Zimmer {{ room.number }}</h3>
+                                    <select
+                                        id="room-{{ guest.id }}"
+                                        name="room_number"
+                                        required
+                                    >
+                                        <option value="">
+                                            Bitte auswählen
+                                        </option>
 
-                        <ul>
-                            {% for feature in room.features | sort %}
-                                <li>{{ feature }}</li>
-                            {% endfor %}
-                        </ul>
+                                        {% for room in rooms %}
+                                            <option
+                                                value="{{ room.number }}"
+                                                {% if assignments.get(guest.id) == room.number %}
+                                                    selected
+                                                {% endif %}
+                                            >
+                                                Zimmer {{ room.number }}
+                                            </option>
+                                        {% endfor %}
+                                    </select>
 
-                        {% if room.number in assignments.values() %}
-                            <p class="occupied">
-                                Belegt
-                            </p>
-                        {% else %}
-                            <p class="available">
-                                Frei
-                            </p>
-                        {% endif %}
-                    </article>
-                {% endfor %}
-            </div>
-        </section>
+                                    <button
+                                        class="button small-button"
+                                        type="submit"
+                                    >
+                                        Zimmer zuordnen
+                                    </button>
+                                </form>
+
+                                {% if guest.id in assignments %}
+                                    <form
+                                        action="{{ url_for('remove_assignment') }}"
+                                        method="post"
+                                    >
+                                        <input
+                                            type="hidden"
+                                            name="guest_id"
+                                            value="{{ guest.id }}"
+                                        >
+
+                                        <button
+                                            class="remove-button"
+                                            type="submit"
+                                        >
+                                            Zuordnung entfernen
+                                        </button>
+                                    </form>
+                                {% endif %}
+                            </div>
+                        </details>
+                    {% endfor %}
+                </div>
+            </aside>
+        </div>
+
+        <form
+            class="finish-form"
+            action="{{ url_for('finish_night') }}"
+            method="post"
+        >
+            <button
+                class="finish-button"
+                type="submit"
+                {% if assignments | length != 3 %}
+                    disabled
+                {% endif %}
+            >
+                Nacht auswerten
+            </button>
+
+            {% if assignments | length != 3 %}
+                <p class="form-information">
+                    Es wurden noch nicht alle Gäste zugewiesen.
+                </p>
+            {% endif %}
+        </form>
     </main>
 </body>
 </html>

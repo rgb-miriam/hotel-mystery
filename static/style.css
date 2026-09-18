@@ -1,17 +1,22 @@
+@import url(
+    "https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@400;700&family=Cormorant+Garamond:wght@400;500;600;700&display=swap"
+);
+
 :root {
-    --night: #111820;
-    --night-light: #1b2630;
-    --paper: #f3eddf;
-    --paper-dark: #e4dac5;
-    --ink: #20252a;
-    --muted: #6f6a61;
-    --brass: #ad8548;
-    --brass-light: #d1b276;
-    --wine: #6e3440;
-    --wine-dark: #522630;
-    --green: #456b57;
-    --red: #944a4a;
-    --line: #baac91;
+    --background: #111111;
+    --background-light: #1d1d1d;
+    --surface: #eeeeee;
+    --surface-dark: #d8d8d8;
+    --text-light: #eeeeee;
+    --text-dark: #1b1b1b;
+    --text-muted: #666666;
+    --accent: #4a4a4a;
+    --accent-dark: #2f2f2f;
+    --accent-medium: #858585;
+    --accent-light: #c7c7c7;
+    --border: #a3a3a3;
+    --shadow: #050505;
+    --white: #ffffff;
 }
 
 * {
@@ -21,19 +26,21 @@
 body {
     margin: 0;
     min-height: 100vh;
-    color: var(--paper);
-    background: var(--night);
+    color: var(--text-light);
+    background: var(--background);
     font-family:
-        Arial,
-        Helvetica,
-        sans-serif;
+        "Cormorant Garamond",
+        Georgia,
+        serif;
+    font-size: 18px;
+    font-weight: 500;
 }
 
 body::before {
     display: block;
     height: 7px;
     content: "";
-    background: var(--brass);
+    background: var(--accent-medium);
 }
 
 .container {
@@ -46,27 +53,30 @@ h1,
 h2,
 h3 {
     font-family:
+        "Cinzel Decorative",
         Georgia,
-        "Times New Roman",
         serif;
-    font-weight: normal;
+    font-weight: 400;
 }
 
 h1 {
     margin: 4px 0 0;
     font-size: clamp(38px, 6vw, 62px);
-    letter-spacing: -1px;
+    font-weight: 700;
+    letter-spacing: 1px;
 }
 
 h2 {
     margin: 50px 0 22px;
     padding-bottom: 9px;
     font-size: 28px;
-    border-bottom: 1px solid #46515a;
+    letter-spacing: 0.5px;
+    border-bottom: 1px solid #555555;
 }
 
 h3 {
-    font-size: 26px;
+    font-size: 24px;
+    letter-spacing: 0.5px;
 }
 
 p,
@@ -86,9 +96,9 @@ button {
 
 .label {
     margin: 0 0 8px;
-    color: var(--brass-light);
+    color: var(--accent-light);
     font-size: 12px;
-    font-weight: bold;
+    font-weight: 700;
     letter-spacing: 2.5px;
     text-transform: uppercase;
 }
@@ -97,42 +107,49 @@ button {
     max-width: 720px;
     margin: 80px auto;
     padding: 56px;
-    color: var(--ink);
-    background: var(--paper);
-    border: 1px solid var(--line);
-    border-left: 9px solid var(--wine);
-    box-shadow: 12px 12px 0 #080c10;
+    color: var(--text-dark);
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-left: 9px solid var(--accent);
+    box-shadow: 12px 12px 0 var(--shadow);
 }
 
 .start-card .label {
-    color: var(--wine);
+    color: var(--accent);
 }
 
 .start-card p {
     max-width: 540px;
     margin-right: auto;
     margin-left: auto;
-    color: #4e4a44;
-    font-size: 18px;
+    color: #4f4f4f;
+    font-size: 19px;
 }
 
 .button,
 .secondary-button {
     display: inline-block;
     padding: 12px 20px;
-    color: #ffffff;
-    font-size: 14px;
-    font-weight: bold;
+    color: var(--white);
+    font-size: 16px;
+    font-weight: 700;
     letter-spacing: 0.4px;
     text-decoration: none;
-    background: var(--wine);
-    border: 1px solid var(--wine-dark);
+    background: var(--accent);
+    border: 1px solid var(--accent-dark);
     border-radius: 3px;
 }
 
 .button:hover,
 .secondary-button:hover {
-    background: var(--wine-dark);
+    background: var(--accent-dark);
+}
+
+.button:focus-visible,
+.secondary-button:focus-visible,
+button:focus-visible {
+    outline: 3px solid var(--accent-light);
+    outline-offset: 3px;
 }
 
 .page-header {
@@ -141,16 +158,16 @@ button {
     justify-content: space-between;
     gap: 28px;
     padding-bottom: 24px;
-    border-bottom: 3px double var(--brass);
+    border-bottom: 3px double var(--accent-medium);
 }
 
 .score {
     min-width: 245px;
     padding: 15px 20px;
-    color: var(--paper);
-    background: var(--night-light);
-    border: 1px solid #4b5963;
-    border-left: 5px solid var(--brass);
+    color: var(--text-light);
+    background: var(--background-light);
+    border: 1px solid #555555;
+    border-left: 5px solid var(--accent-medium);
 }
 
 .score p {
@@ -160,9 +177,9 @@ button {
 .messages {
     margin: 26px 0;
     padding: 13px 18px;
-    color: var(--ink);
-    background: var(--brass-light);
-    border-left: 6px solid var(--wine);
+    color: var(--text-dark);
+    background: var(--accent-light);
+    border-left: 6px solid var(--accent);
 }
 
 .messages p {
@@ -179,17 +196,17 @@ button {
 .card {
     position: relative;
     padding: 25px;
-    color: var(--ink);
-    background: var(--paper);
-    border: 1px solid var(--line);
-    border-top: 6px solid var(--wine);
+    color: var(--text-dark);
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-top: 6px solid var(--accent);
     border-radius: 3px;
-    box-shadow: 7px 7px 0 #080c10;
+    box-shadow: 7px 7px 0 var(--shadow);
 }
 
 .card h3 {
     margin: 6px 0 20px;
-    color: var(--wine);
+    color: var(--accent);
 }
 
 .card ul {
@@ -199,20 +216,20 @@ button {
 
 .guest-id {
     margin: 0;
-    color: var(--muted);
+    color: var(--text-muted);
     font-size: 13px;
-    font-weight: bold;
+    font-weight: 700;
     letter-spacing: 1px;
     text-transform: uppercase;
 }
 
 .room-card {
-    background: var(--paper-dark);
-    border-top-color: var(--brass);
+    background: var(--surface-dark);
+    border-top-color: var(--accent-medium);
 }
 
 .room-card h3 {
-    color: #604b2b;
+    color: #444444;
 }
 
 form {
@@ -222,23 +239,23 @@ form {
 label {
     display: block;
     margin-bottom: 7px;
-    color: var(--muted);
-    font-size: 14px;
-    font-weight: bold;
+    color: var(--text-muted);
+    font-size: 15px;
+    font-weight: 700;
 }
 
 select {
     width: 100%;
     padding: 11px;
-    color: var(--ink);
-    background: #ffffff;
-    border: 1px solid #93866f;
+    color: var(--text-dark);
+    background: var(--white);
+    border: 1px solid #888888;
     border-radius: 3px;
 }
 
 select:focus {
-    outline: 3px solid rgba(173, 133, 72, 0.35);
-    border-color: var(--brass);
+    outline: 3px solid rgba(128, 128, 128, 0.35);
+    border-color: #707070;
 }
 
 .small-button {
@@ -249,27 +266,27 @@ select:focus {
 .concierge-button {
     width: 100%;
     padding: 10px;
-    color: var(--ink);
-    font-weight: bold;
-    background: var(--brass-light);
-    border: 1px solid var(--brass);
+    color: var(--text-dark);
+    font-weight: 700;
+    background: var(--accent-light);
+    border: 1px solid var(--accent-medium);
     border-radius: 3px;
 }
 
 .concierge-button:hover {
-    background: #ddc48f;
+    background: #b5b5b5;
 }
 
 .concierge-button:disabled {
-    color: #77736b;
-    background: #d1cbc0;
-    border-color: #b8b0a2;
+    color: #707070;
+    background: #d0d0d0;
+    border-color: #aaaaaa;
     cursor: not-allowed;
 }
 
 .concierge-status {
     margin: 8px 0 0;
-    color: #b8c0c5;
+    color: #bcbcbc;
 }
 
 .assignment,
@@ -281,27 +298,27 @@ select:focus {
 }
 
 .assignment {
-    color: #294b38;
-    background: #dce8de;
-    border-color: var(--green);
+    color: #252525;
+    background: #d4d4d4;
+    border-color: #666666;
 }
 
 .no-assignment {
-    color: #665f55;
-    background: #e9e1d2;
-    border-color: #9c917e;
+    color: #555555;
+    background: #e2e2e2;
+    border-color: #999999;
 }
 
 .remove-button {
     width: 100%;
     padding: 10px;
-    color: #ffffff;
-    background: var(--red);
+    color: var(--white);
+    background: #444444;
     border-radius: 3px;
 }
 
 .remove-button:hover {
-    background: #793b3b;
+    background: var(--accent-dark);
 }
 
 .available,
@@ -309,67 +326,66 @@ select:focus {
     display: inline-block;
     margin-bottom: 0;
     padding: 5px 9px;
+    color: var(--white);
     font-size: 12px;
-    font-weight: bold;
+    font-weight: 700;
     letter-spacing: 1px;
     text-transform: uppercase;
 }
 
 .available {
-    color: #ffffff;
-    background: var(--green);
+    background: #5a5a5a;
 }
 
 .occupied {
-    color: #ffffff;
-    background: var(--wine);
+    background: var(--accent-dark);
 }
 
 .finish-form {
     margin: 36px 0 12px;
     padding: 24px;
     text-align: center;
-    background: var(--night-light);
-    border: 1px solid #46515a;
+    background: var(--background-light);
+    border: 1px solid #555555;
 }
 
 .finish-button {
     padding: 13px 28px;
-    color: #ffffff;
-    font-weight: bold;
-    background: var(--green);
+    color: var(--white);
+    font-weight: 700;
+    background: #5a5a5a;
     border-radius: 3px;
 }
 
 .finish-button:hover {
-    background: #365443;
+    background: #3d3d3d;
 }
 
 .finish-button:disabled {
-    color: #858b8f;
-    background: #333e46;
+    color: #888888;
+    background: #363636;
     cursor: not-allowed;
 }
 
 .form-information {
     margin-bottom: 0;
-    color: #b8c0c5;
+    color: #bcbcbc;
 }
 
 .result-card {
     max-width: 800px;
     margin: 65px auto;
     padding: 52px;
-    color: var(--ink);
+    color: var(--text-dark);
     text-align: center;
-    background: var(--paper);
-    border: 1px solid var(--line);
-    border-top: 9px solid var(--brass);
-    box-shadow: 12px 12px 0 #080c10;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-top: 9px solid var(--accent-medium);
+    box-shadow: 12px 12px 0 var(--shadow);
 }
 
 .result-card .label {
-    color: var(--wine);
+    color: var(--accent);
 }
 
 .result-grid {
@@ -377,99 +393,73 @@ select:focus {
     grid-template-columns: repeat(3, 1fr);
     gap: 1px;
     margin: 34px 0;
-    background: var(--line);
-    border: 1px solid var(--line);
+    background: var(--border);
+    border: 1px solid var(--border);
 }
 
 .result-grid article {
     padding: 24px 15px;
-    background: var(--paper-dark);
+    background: var(--surface-dark);
 }
 
 .result-grid span {
     display: block;
     margin-bottom: 12px;
-    color: var(--muted);
+    color: var(--text-muted);
     font-size: 13px;
     letter-spacing: 0.6px;
     text-transform: uppercase;
 }
 
 .result-grid strong {
-    color: var(--wine);
+    color: var(--accent);
     font-family:
+        "Cinzel Decorative",
         Georgia,
-        "Times New Roman",
         serif;
     font-size: 38px;
-    font-weight: normal;
+    font-weight: 400;
 }
 
-@media (max-width: 700px) {
-    .container {
-        width: min(94%, 620px);
-        padding-top: 28px;
-    }
-
-    .start-card,
-    .result-card {
-        margin: 25px auto;
-        padding: 30px 24px;
-        box-shadow: 6px 6px 0 #080c10;
-    }
-
-    .page-header {
-        align-items: flex-start;
-        flex-direction: column;
-    }
-
-    .score {
-        width: 100%;
-    }
-
-    .result-grid {
-        grid-template-columns: 1fr;
-    }
-}
 .rules-link {
-    color: var(--wine);
-    font-weight: bold;
+    color: var(--accent);
+    font-weight: 700;
     text-decoration-thickness: 1px;
     text-underline-offset: 4px;
 }
 
 .rules-link-dark {
-    color: var(--brass-light);
+    color: var(--accent-light);
 }
 
 .help-document {
     max-width: 900px;
     margin: 25px auto;
     padding: 50px;
-    color: var(--ink);
-    background: var(--paper);
-    border-top: 8px solid var(--wine);
-    box-shadow: 12px 12px 0 #080c10;
+    color: var(--text-dark);
+    background: var(--surface);
+    border-top: 8px solid var(--accent);
+    box-shadow: 12px 12px 0 var(--shadow);
 }
 
 .help-document .label {
-    color: var(--wine);
+    color: var(--accent);
 }
 
 .help-document h2 {
-    color: var(--wine-dark);
-    border-bottom-color: var(--line);
+    color: var(--accent-dark);
+    border-bottom-color: var(--border);
 }
 
 .help-document h3 {
     margin: 0 0 8px;
-    color: var(--wine);
+    color: var(--accent);
     font-size: 21px;
 }
 
 .introduction {
     max-width: 680px;
-    font-size: 18px;
+    font-size: 19px;
 }
 
 .rules-grid {
@@ -481,8 +471,8 @@ select:focus {
 
 .rules-grid > div {
     padding: 18px;
-    background: var(--paper-dark);
-    border-left: 4px solid var(--brass);
+    background: var(--surface-dark);
+    border-left: 4px solid var(--accent-medium);
 }
 
 .rules-grid p {
@@ -498,29 +488,291 @@ select:focus {
 .help-document td {
     padding: 12px;
     text-align: left;
-    border: 1px solid var(--line);
+    border: 1px solid var(--border);
 }
 
 .help-document th {
-    color: #ffffff;
-    background: var(--wine);
+    color: var(--white);
+    background: var(--accent);
 }
 
 .formula {
     display: inline-block;
     padding: 12px 18px;
     font-family:
+        "Cinzel Decorative",
         Georgia,
-        "Times New Roman",
         serif;
-    font-size: 21px;
-    background: var(--paper-dark);
-    border: 1px solid var(--line);
+    font-size: 19px;
+    background: var(--surface-dark);
+    border: 1px solid var(--border);
 }
 
 @media (max-width: 700px) {
+    .container {
+        width: min(94%, 620px);
+        padding-top: 28px;
+    }
+
+    .start-card,
+    .result-card {
+        margin: 25px auto;
+        padding: 30px 24px;
+        box-shadow: 6px 6px 0 var(--shadow);
+    }
+
+    .page-header {
+        align-items: flex-start;
+        flex-direction: column;
+    }
+
+    .score {
+        width: 100%;
+    }
+
+    .result-grid {
+        grid-template-columns: 1fr;
+    }
+
     .help-document {
         padding: 30px 22px;
-        box-shadow: 6px 6px 0 #080c10;
+        box-shadow: 6px 6px 0 var(--shadow);
     }
+}
+.game-layout {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) 170px;
+    gap: 28px;
+    align-items: stretch;
+}
+
+.hotel-area,
+.guest-sidebar {
+    min-width: 0;
+}
+
+.hotel-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    grid-template-rows: repeat(2, minmax(180px, 1fr));
+    gap: 8px;
+    padding: 12px;
+    background: #292929;
+    border: 6px solid #777777;
+}
+
+.top-view-room {
+    display: flex;
+    min-width: 0;
+    padding: 18px 12px;
+    align-items: center;
+    flex-direction: column;
+    justify-content: center;
+    color: var(--ink, #1b1b1b);
+    text-align: center;
+    background: var(--paper, #eeeeee);
+    border: 2px solid #929292;
+}
+
+.top-view-room h3 {
+    margin: 0 0 12px;
+}
+
+.top-view-room ul {
+    margin: 0;
+    padding: 0;
+    line-height: 1.4;
+    list-style: none;
+}
+
+.guest-sidebar {
+    display: flex;
+    flex-direction: column;
+}
+
+.guest-stack {
+    display: grid;
+    flex: 1;
+    grid-template-rows: repeat(3, 1fr);
+    gap: 8px;
+    align-items: center;
+}
+
+.guest-entry {
+    position: relative;
+    display: flex;
+    justify-content: center;
+}
+
+.guest-entry summary {
+    list-style: none;
+}
+
+.guest-entry summary::-webkit-details-marker {
+    display: none;
+}
+
+.guest-circle {
+    display: flex;
+    width: 112px;
+    height: 112px;
+    align-items: center;
+    flex-direction: column;
+    justify-content: center;
+    color: var(--ink, #1b1b1b);
+    text-align: center;
+    background: var(--paper, #eeeeee);
+    border: 5px double #777777;
+    border-radius: 50%;
+    box-shadow: 5px 5px 0 #050505;
+    cursor: pointer;
+}
+
+.guest-circle:hover {
+    background: var(--paper-dark, #d8d8d8);
+}
+
+.guest-circle-id {
+    color: var(--muted, #666666);
+    font-size: 12px;
+    font-weight: bold;
+    text-transform: uppercase;
+}
+
+.guest-circle-type {
+    margin-top: 5px;
+    font-family:
+        "Cinzel Decorative",
+        Georgia,
+        serif;
+    font-size: 14px;
+}
+
+.guest-popover {
+    position: absolute;
+    z-index: 10;
+    top: 0;
+    right: calc(100% + 14px);
+    width: 285px;
+    padding: 20px;
+    color: var(--ink, #1b1b1b);
+    background: var(--paper, #eeeeee);
+    border: 1px solid var(--line, #a3a3a3);
+    box-shadow: 7px 7px 0 #050505;
+}
+
+.guest-popover h3 {
+    margin-top: 0;
+}
+
+@media (max-width: 700px) {
+    .game-layout {
+        grid-template-columns: 1fr;
+    }
+
+    .hotel-grid {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        grid-template-rows: repeat(2, auto);
+    }
+
+    .guest-stack {
+        grid-template-columns: repeat(3, 1fr);
+        grid-template-rows: 1fr;
+    }
+
+    .guest-entry {
+        display: block;
+    }
+
+    .guest-circle {
+        width: 92px;
+        height: 92px;
+        margin: 0 auto;
+    }
+
+    .guest-popover {
+        position: static;
+        width: 100%;
+        margin-top: 12px;
+    }
+}
+.top-view-room {
+    position: relative;
+    display: flex;
+    min-height: 180px;
+    padding: 18px 18px 52px;
+    align-items: flex-end;
+    flex-direction: column;
+    justify-content: flex-start;
+    text-align: right;
+}
+
+.top-view-room h3 {
+    width: 100%;
+    margin: 0 0 14px;
+    text-align: right;
+}
+
+.top-view-room ul {
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    font-size: 14px;
+    line-height: 1.35;
+    text-align: right;
+    list-style: none;
+}
+
+.top-view-room .available,
+.top-view-room .occupied {
+    position: absolute;
+    right: 12px;
+    bottom: 12px;
+    left: 12px;
+    margin: 0;
+    padding: 7px 10px;
+    text-align: center;
+}
+
+.hotel-grid {
+    grid-template-rows: repeat(2, minmax(220 px, 1fr));
+}
+
+.top-view-room {
+    position: relative;
+    display: flex;
+    min-height: 220px;
+    padding: 18px 18px 70px;
+    align-items: stretch;
+    flex-direction: column;
+    justify-content: flex-start;
+    text-align: left;
+}
+
+.top-view-room h3 {
+    align-self: flex-end;
+    margin: 0 0 10px;
+    font-size: 18px;
+    text-align: right;
+}
+
+.top-view-room ul {
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    font-size: 13px;
+    line-height: 1.3;
+    text-align: left;
+    list-style: none;
+}
+
+.top-view-room .available,
+.top-view-room .occupied {
+    position: absolute;
+    right: 10px;
+    bottom: 10px;
+    left: 10px;
+    margin: 0;
+    padding: 6px 8px;
+    text-align: center;
 }

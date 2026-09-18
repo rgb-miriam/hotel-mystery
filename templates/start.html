@@ -8,7 +8,7 @@
         content="width=device-width, initial-scale=1.0"
     >
 
-    <title>Hotel Mystery</title>
+    <title>Portfolio: Software Engineering</title>
 
     <link
         rel="stylesheet"
@@ -18,26 +18,26 @@
 <body>
     <main class="container">
         <section class="start-card">
-            <p class="label">Hotelverwaltung</p>
-
-            <h1>Hotel Mystery</h1>
+            <p class="label">Herzlich Willkommen bei Hotel Mystery</p>
 
             <p>
-                Leite das Hotel für drei Nächte.
-                Ordne jedem übernatürlichen Gast
-                ein geeignetes Zimmer zu.
+                Im Rahmen des Moduls Portfolio Software Engineering habe ich dieses logikbasiertes Rundenspiel entwickelt. 
+
+                Hierbei geht es darum über drei Runden hinweg verschiedene Gäste einzelnen Zimmer zuzuordnen.
+
             </p>
 <p>
     <a
         class="rules-link"
         href="{{ url_for('help_page') }}"
     >
-        Spielregeln lesen
+        i
     </a>
 </p>
             <form
                 action="{{ url_for('start_game') }}"
                 method="post"
+                style="text-align: center;"
             >
                 <button
                     class="button"
